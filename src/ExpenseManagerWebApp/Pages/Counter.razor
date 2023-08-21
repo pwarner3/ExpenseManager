@@ -1,4 +1,6 @@
 ﻿@page "/counter"
+@using ExpenseManager.Domain.Interfaces;
+@inject IExpenseCategoryRepo categories;
 
 <PageTitle>Counter</PageTitle>
 
@@ -7,6 +9,11 @@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@foreach (ExpenseCategory cat in categories.ExpenseCategories)
+{
+    <p>@cat.CategoryName</p>
+}
 
 @code {
     private int currentCount = 0;

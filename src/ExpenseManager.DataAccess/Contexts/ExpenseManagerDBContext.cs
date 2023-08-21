@@ -7,8 +7,8 @@ namespace ExpenseManager.DataAccess.Contexts
     {
         public ExpenseManagerDBContext(DbContextOptions<ExpenseManagerDBContext> options) : base(options) { }
 
-        public DbSet<ExpenseUnique> Expense_Unique { get; set; }
-        public DbSet<ExpenseCategory> Expense_Categories { get; set; }
-        public DbSet<ExpenseTransaction> Expense_Transactions { get; set; }
+        public DbSet<ExpenseUnique> ExpenseUnique { get; set; }
+        public DbSet<ExpenseCategory> ExpenseCategories { get; set; }
+        public DbSet<ExpenseTransaction> ExpenseTransactions { get; set; }
     }
 }
