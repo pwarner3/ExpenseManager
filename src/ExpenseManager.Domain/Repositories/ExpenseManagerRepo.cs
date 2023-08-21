@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExpenseManager.DataAccess.Contexts;
 
 namespace ExpenseManager.Domain.Repositories
 {
-    internal class ExpenseManagerRepo
+    public class ExpenseManagerRepo
     {
+        private ExpenseManagerDBContext _context;
+
+        public ExpenseManagerRepo(ExpenseManagerDBContext context)
+        {
+            _context = context;
+        }
+        public void GetCategories()
+        {
+
+        }
+        public void GetSingleCategory()
+        {
+
+        }
+
     }
 }
