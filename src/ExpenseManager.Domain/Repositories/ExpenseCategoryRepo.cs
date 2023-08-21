@@ -1,5 +1,6 @@
 ﻿using ExpenseManager.DataAccess.Contexts;
 using ExpenseManager.DataAccess.Models;
+using ExpenseManager.Domain.Interfaces;
 
 namespace ExpenseManager.Domain.Repositories
 {
