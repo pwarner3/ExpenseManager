@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using ExpenseManager.DataAccess.Contexts;
+using ExpenseManager.Domain.Repositories;
+using ExpenseManager.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,7 @@ builder.Services.AddDbContext<ExpenseManagerDBContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("ExpenseDB"));
 });
+builder.Services.AddScoped<IExpenseCategoryRepo,ExpenseCategoryRepo>();
 
 var app = builder.Build();
 
