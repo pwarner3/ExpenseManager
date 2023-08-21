@@ -8,7 +8,9 @@ namespace ExpenseManager.DataAccess.Models
     {
         [Key]
         [Required]
+        [Column("id")]
         public int Id { get; set; }
+        [Column("category_name")]
         public string CategoryName { get; set; }
     }
 }

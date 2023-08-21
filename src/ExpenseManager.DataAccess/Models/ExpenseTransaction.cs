@@ -8,6 +8,7 @@ namespace ExpenseManager.DataAccess.Models
     {
         [Key]
         [Required]
+        [Column("transaction_id")]
         public int TransactionId { get; set; }
     }
 }
