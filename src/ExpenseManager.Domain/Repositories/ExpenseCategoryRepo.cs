@@ -13,7 +13,6 @@ namespace ExpenseManager.Domain.Repositories
         {
             _context = context;
         }
-        public IQueryable<ExpenseCategory> ExpenseCategories => _context.ExpenseCategories;
 
         public async Task<List<ExpenseCategory>> GetCategories()
         {

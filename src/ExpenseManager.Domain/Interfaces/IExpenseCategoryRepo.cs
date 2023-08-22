@@ -4,8 +4,6 @@ namespace ExpenseManager.Domain.Interfaces
 {
     public interface IExpenseCategoryRepo
     {
-        IQueryable<ExpenseCategory> ExpenseCategories { get; }
-
         Task<List<ExpenseCategory>> GetCategories();
         void AddCategory(ExpenseCategory category);
         void DeleteCategory(ExpenseCategory category);
