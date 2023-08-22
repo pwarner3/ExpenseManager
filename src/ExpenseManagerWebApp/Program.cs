@@ -30,6 +30,7 @@ builder.Services.AddDbContext<ExpenseManagerDBContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("ExpenseDB"));
 });
 builder.Services.AddScoped<IExpenseCategoryRepo,ExpenseCategoryRepo>();
+builder.Services.AddScoped<IExpenseUniqueRepo,ExpenseUniqueRepo>();
 
 var app = builder.Build();
 
