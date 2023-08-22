@@ -6,6 +6,7 @@ namespace ExpenseManager.Domain.Interfaces
     {
         IQueryable<ExpenseCategory> ExpenseCategories { get; }
 
+        Task<List<ExpenseCategory>> GetCategories();
         void AddCategory(ExpenseCategory category);
         void DeleteCategory(ExpenseCategory category);
         ExpenseCategory GetSingleCategory(int id);

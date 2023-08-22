@@ -5,9 +5,9 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseManager.Domain", "src\ExpenseManager.Domain\ExpenseManager.Domain.csproj", "{5CB3AC07-CD8C-4788-82A6-7B1BE899DBDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManagerWebApp", "src\ExpenseManagerWebApp\ExpenseManagerWebApp.csproj", "{597A8FD3-9F60-4D2B-9FED-4014E1A20D8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseManagerWebApp", "src\ExpenseManagerWebApp\ExpenseManagerWebApp.csproj", "{597A8FD3-9F60-4D2B-9FED-4014E1A20D8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseManager.DataAccess", "src\ExpenseManager.DataAccess\ExpenseManager.DataAccess.csproj", "{D55C878F-9525-4D08-B8A5-C34D61A0706D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseManager.DataAccess", "src\ExpenseManager.DataAccess\ExpenseManager.DataAccess.csproj", "{D55C878F-9525-4D08-B8A5-C34D61A0706D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

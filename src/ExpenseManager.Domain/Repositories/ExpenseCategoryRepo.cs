@@ -1,6 +1,7 @@
 ﻿using ExpenseManager.DataAccess.Contexts;
 using ExpenseManager.DataAccess.Models;
 using ExpenseManager.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseManager.Domain.Repositories
 {
@@ -13,6 +14,11 @@ namespace ExpenseManager.Domain.Repositories
             _context = context;
         }
         public IQueryable<ExpenseCategory> ExpenseCategories => _context.ExpenseCategories;
+
+        public async Task<List<ExpenseCategory>> GetCategories()
+        {
+            return await _context.ExpenseCategories.ToListAsync();
+        }
         public ExpenseCategory GetSingleCategory(int id)
         {
             return _context.ExpenseCategories.Single(c => c.Id == id);
