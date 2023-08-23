@@ -6,8 +6,8 @@ namespace ExpenseManager.Domain.Interfaces
     {
         Task<List<ExpenseCategory>> GetCategories();
         Task AddCategory(ExpenseCategory category);
-        void DeleteCategory(ExpenseCategory category);
+        Task DeleteCategory(ExpenseCategory category);
         ExpenseCategory GetSingleCategory(int id);
-        void UpdateCategory(ExpenseCategory category);
+        Task UpdateCategory(ExpenseCategory category);
     }
 }

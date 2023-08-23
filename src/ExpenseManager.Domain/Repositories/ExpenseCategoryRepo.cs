@@ -31,15 +31,15 @@ namespace ExpenseManager.Domain.Repositories
 
             return _context.SaveChangesAsync();
         }
-        public void UpdateCategory(ExpenseCategory category)
+        public Task UpdateCategory(ExpenseCategory category)
         {
             _context.ExpenseCategories.Update(category);
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
-        public void DeleteCategory(ExpenseCategory category)
+        public Task DeleteCategory(ExpenseCategory category)
         {
             _context.ExpenseCategories.Remove(category);
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
     }
 }
