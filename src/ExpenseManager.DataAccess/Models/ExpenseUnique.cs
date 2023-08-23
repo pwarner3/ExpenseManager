@@ -16,8 +16,8 @@ namespace ExpenseManager.DataAccess.Models
 
         //Fk to Category
         [Column("category_id")]
-        public int CategoryId { get; set; }
-        public ExpenseCategory Category { get; set; }
+        public int? CategoryId { get; set; }
+        public virtual ExpenseCategory Category { get; set; }
 
     }
 }

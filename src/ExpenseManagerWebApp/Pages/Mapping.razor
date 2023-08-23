@@ -14,13 +14,17 @@ else
     {
         <p>@exp.Id</p>
         <p>@exp.UniqueName</p>
-        <p>@exp.Category.CategoryName</p>
+        @if (exp.Category is not null)
+        {
+            <p>@exp.Category.CategoryName</p>
+        }
+
     }
 }
 
 @code {
-    private List<ExpenseUnique> ?uniqueExpenses;
-    private List<ExpenseCategory> ?categories;
+    private List<ExpenseUnique> uniqueExpenses = default!;
+    private List<ExpenseCategory> categories = default!;
 
     protected override async Task OnInitializedAsync()
     {

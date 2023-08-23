@@ -28,7 +28,6 @@ namespace ExpenseManager.Domain.Repositories
             {
                 _context.ExpenseCategories.Add(category);
             }
-
             return _context.SaveChangesAsync();
         }
         public Task UpdateCategory(ExpenseCategory category)

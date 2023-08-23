@@ -19,10 +19,25 @@
     }
     else
     {
-        @foreach (var cat in allCategories)
-        {
-            <p>@cat.CategoryName</p>
-        }
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>CategoryName</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+        <tbody>
+            @foreach (var cat in allCategories)
+            {
+                <tr>
+                    <td>@cat.CategoryName</td>
+                    <td><a class="btn btn-info">Edit</a></td>
+                    <td><a class="btn btn-danger" @onclick="() => DeleteCategory(cat)">Delete</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
     }
 </div>
 
@@ -58,4 +73,12 @@
 
         newCategory = new DisplayExpenseCategory();
     }
+
+    private async Task DeleteCategory(ExpenseCategory category)
+    {
+        await _categories.DeleteCategory(category);
+
+        allCategories.Remove(category);
+    }
+
 }
