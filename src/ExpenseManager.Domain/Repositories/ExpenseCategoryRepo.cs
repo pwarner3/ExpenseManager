@@ -22,14 +22,14 @@ namespace ExpenseManager.Domain.Repositories
         {
             return _context.ExpenseCategories.Single(c => c.Id == id);
         }
-        public void AddCategory(ExpenseCategory category)
+        public Task AddCategory(ExpenseCategory category)
         {
             if (category.Id == 0)
             {
                 _context.ExpenseCategories.Add(category);
             }
 
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
         public void UpdateCategory(ExpenseCategory category)
         {

@@ -1,7 +1,61 @@
 ﻿@page "/categories"
+@using ExpenseManagerWebApp.Models;
+@inject IExpenseCategoryRepo _categories;
 
-<h3>Add Categories</h3>
+<EditForm Model="@newCategory" OnValidSubmit="@AddCategory">
+    <InputText id="categoryName" @bind-Value="newCategory.CategoryName" />
+    <button type="submit" class="btn btn-success">Add Category</button>
+
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+</EditForm>
+
+<div class="row mt-3">
+    @if (allCategories is null)
+    {
+        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only"></span>
+        </div>
+    }
+    else
+    {
+        @foreach (var cat in allCategories)
+        {
+            <p>@cat.CategoryName</p>
+        }
+    }
+</div>
 
 @code {
+    private DisplayExpenseCategory newCategory = new DisplayExpenseCategory();
+    private List<ExpenseCategory>? allCategories;
 
+    protected override async Task OnInitializedAsync()
+    {
+        //Have to do this in order to render page properly
+        await Task.Delay(1);
+        try
+        {
+            allCategories = await _categories.GetCategories();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+
+    private async Task AddCategory()
+    {
+        ExpenseCategory c = new ExpenseCategory
+        {
+            CategoryName = newCategory.CategoryName
+        };
+
+        await _categories.AddCategory(c);
+
+        allCategories?.Add(c);
+
+        newCategory = new DisplayExpenseCategory();
+    }
 }
