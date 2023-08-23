@@ -10,20 +10,54 @@
 }
 else
 {
-    @foreach (var exp in uniqueExpenses)
-    {
-        <p>@exp.Id</p>
-        <p>@exp.UniqueName</p>
-        @if (exp.Category is not null)
-        {
-            <p>@exp.Category.CategoryName</p>
-        }
-        else
-        {
-            <p>None</p>
-        }
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UniqueName</th>
+                <th>Category</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var exp in uniqueExpenses)
+            {
+                <tr>
+                    <td>@exp.Id</td>
+                    <td>@exp.UniqueName</td>
+                    @if (exp.Category is not null)
+                    {
+                        <td>
+                            <select class="form-control" @bind="@exp.CategoryId">
+                                <option selected>@exp.Category.CategoryName</option>
+                                @foreach (var cat in categories)
+                                {
+                                    <option value="@cat.Id"> @cat.CategoryName </option>
+                                }
 
-}
+                            </select>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <select class="form-control" @bind="@exp.CategoryId">
+                                <option selected>None</option>
+                                @foreach (var cat in categories)
+                                {
+                                    <option value="@cat.Id"> @cat.CategoryName </option>
+                                }
+
+                            </select>
+                        </td>
+                    }
+                    <td><a class="btn btn-info">Edit</a></td>
+                    <td><a class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @code {
