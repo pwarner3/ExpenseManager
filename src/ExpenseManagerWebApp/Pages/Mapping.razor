@@ -26,32 +26,24 @@ else
                 <tr>
                     <td>@exp.Id</td>
                     <td>@exp.UniqueName</td>
-                    @if (exp.Category is not null)
-                    {
-                        <td>
-                            <select class="form-control" @bind="@exp.CategoryId">
-                                <option selected>@exp.Category.CategoryName</option>
-                                @foreach (var cat in categories)
-                                {
-                                    <option value="@cat.Id"> @cat.CategoryName </option>
-                                }
-
-                            </select>
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            <select class="form-control" @bind="@exp.CategoryId">
-                                <option selected>None</option>
-                                @foreach (var cat in categories)
-                                {
-                                    <option value="@cat.Id"> @cat.CategoryName </option>
-                                }
-
-                            </select>
-                        </td>
-                    }
+                    
+                    <td>
+                    <select @onchange="args => MapCategoryToExpenseAsync(args,exp)">
+                        @if (exp.Category is null)
+                        {
+                            <option selected>None</option>
+                        }
+                        else
+                        {
+                            <option value="@exp.CategoryId" selected>@exp.Category.CategoryName</option>  
+                        }
+                            @foreach (var cat in categories)
+                        {
+                            <option value="@cat.Id">@cat.CategoryName</option>
+                        }
+                        </select>
+                    </td>
+                    
                     <td><a class="btn btn-info">Edit</a></td>
                     <td><a class="btn btn-danger">Delete</a></td>
                 </tr>
@@ -69,5 +61,12 @@ else
         await Task.Delay(1);
         uniqueExpenses = await _uniqueRepo.GetUniqueExpenses();
         categories = await _categoriesRepo.GetCategories();
+    }
+
+    private async Task MapCategoryToExpenseAsync(ChangeEventArgs args, ExpenseUnique uniqueExp)
+    {
+        uniqueExp.CategoryId = int.Parse(args.Value.ToString());
+        //exp.CategoryId = e.Value;
+        await _uniqueRepo.UpdateUniqueExpense(uniqueExp);
     }
 }

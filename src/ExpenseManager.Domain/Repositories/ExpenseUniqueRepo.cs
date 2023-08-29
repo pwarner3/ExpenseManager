@@ -17,24 +17,24 @@ namespace ExpenseManager.Domain.Repositories
         {
             return await _context.ExpenseUnique.ToListAsync();
         }
-        public ExpenseUnique GetSingleCategory(int id)
+        public ExpenseUnique GetSingleUniqueExpense(int id)
         {
             return _context.ExpenseUnique.Single(x => x.Id == id);
         }
-        public void AddCategory(ExpenseUnique uniqueExp)
+        public Task AddUniqueExpense(ExpenseUnique uniqueExp)
         {
             _context.ExpenseUnique.Add(uniqueExp);
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
-        public void DeleteCategory(ExpenseUnique uniqueExp)
+        public Task DeleteUniqueExpense(ExpenseUnique uniqueExp)
         {
             _context.Remove(uniqueExp);
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
-        public void UpdateCategory(ExpenseUnique uniqueExp)
+        public Task UpdateUniqueExpense(ExpenseUnique uniqueExp)
         {
             _context.Update(uniqueExp);
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
     }
 }
