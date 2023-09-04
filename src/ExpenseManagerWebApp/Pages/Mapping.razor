@@ -22,6 +22,22 @@ else
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td colspan="2"><InputText class="m-0 p-0" @bind-Value="newUnique.UniqueName" form="addForm" /></td>
+                <td>
+                    <InputSelect @bind-Value="newUnique.CategoryId" form="addForm">
+                        @if (newUnique.Category is null)
+                        {
+                            <option selected>None</option>
+                        }
+                        @foreach (var cat in categories)
+                        {
+                            <option value="@cat.Id">@cat.CategoryName</option>
+                        }
+                    </InputSelect>
+                </td>
+                <td colspan="2"><div class="d-grid"><button class="btn btn-success" type="submit" form="addForm">Add</button></div></td>
+            </tr>
             @foreach (var exp in uniqueExpenses)
             {
                 <tr>
@@ -51,24 +67,7 @@ else
             }
 
 
-            <tr>
-                <td></td>
-                <td><InputText class="m-0 p-0" @bind-Value="newUnique.UniqueName" form="addForm" /></td>
-                <td>
-                    <InputSelect @bind-Value="newUnique.CategoryId" form="addForm">
-                        @if (newUnique.Category is null)
-                        {
-                            <option selected>None</option>
-                        }
-                        @foreach (var cat in categories)
-                        {
-                            <option value="@cat.Id">@cat.CategoryName</option>
-                        }
-                    </InputSelect>
-                </td>
-                <td><button class="btn btn-success" type="submit" form="addForm">Add</button></td>
-                <td></td>
-             </tr>
+           
             
         </tbody>
     </table>
