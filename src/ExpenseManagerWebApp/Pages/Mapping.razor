@@ -10,6 +10,7 @@
 }
 else
 {
+    <EditForm Model="@newUnique" id="addForm" OnValidSubmit="@AddNewUniqueExpense"></EditForm>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -28,19 +29,19 @@ else
                     <td>@exp.UniqueName</td>
                     
                     <td>
-                    <select @onchange="args => MapCategoryToExpenseAsync(args,exp)">
-                        @if (exp.Category is null)
-                        {
-                            <option selected>None</option>
-                        }
-                        else
-                        {
-                            <option value="@exp.CategoryId" selected>@exp.Category.CategoryName</option>  
-                        }
-                            @foreach (var cat in categories)
-                        {
-                            <option value="@cat.Id">@cat.CategoryName</option>
-                        }
+                        <select @onchange="args => MapCategoryToExpenseAsync(args,exp)">
+                            @if (exp.Category is null)
+                            {
+                                <option selected>None</option>
+                            }
+                            else
+                            {
+                                <option value="@exp.CategoryId" selected>@exp.Category.CategoryName</option>  
+                            }
+                                @foreach (var cat in categories)
+                            {
+                                <option value="@cat.Id">@cat.CategoryName</option>
+                            }
                         </select>
                     </td>
                     
@@ -48,11 +49,33 @@ else
                     <td><a class="btn btn-danger">Delete</a></td>
                 </tr>
             }
+
+
+            <tr>
+                <td></td>
+                <td><InputText class="m-0 p-0" @bind-Value="newUnique.UniqueName" form="addForm" /></td>
+                <td>
+                    <InputSelect @bind-Value="newUnique.CategoryId" form="addForm">
+                        @if (newUnique.Category is null)
+                        {
+                            <option selected>None</option>
+                        }
+                        @foreach (var cat in categories)
+                        {
+                            <option value="@cat.Id">@cat.CategoryName</option>
+                        }
+                    </InputSelect>
+                </td>
+                <td><button class="btn btn-success" type="submit" form="addForm">Add</button></td>
+                <td></td>
+             </tr>
+            
         </tbody>
     </table>
 }
 
 @code {
+    private ExpenseUnique newUnique = new ExpenseUnique();
     private List<ExpenseUnique> uniqueExpenses = default!;
     private List<ExpenseCategory> categories = default!;
 
@@ -68,5 +91,13 @@ else
         uniqueExp.CategoryId = int.Parse(args.Value.ToString());
         //exp.CategoryId = e.Value;
         await _uniqueRepo.UpdateUniqueExpense(uniqueExp);
+    }
+
+    private async Task AddNewUniqueExpense()
+    {
+        newUnique.Category = categories.Where(x => x.Id == newUnique.CategoryId).FirstOrDefault()!;
+        await _uniqueRepo.AddUniqueExpense(newUnique);
+        uniqueExpenses.Add(newUnique);
+        newUnique = new ExpenseUnique();
     }
 }
