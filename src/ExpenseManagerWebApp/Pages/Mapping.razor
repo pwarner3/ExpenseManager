@@ -26,7 +26,7 @@ else
                 <td></td>
                 <td><InputText class="form-control form-control-sm" @bind-Value="newUnique.UniqueName" form="addForm" /></td>
                 <td>
-                    <InputSelect @bind-Value="newUnique.CategoryId" form="addForm">
+                    <InputSelect class="form-select form-select-sm" @bind-Value="newUnique.CategoryId" form="addForm">
                         @if (newUnique.Category is null)
                         {
                             <option selected>None</option>
@@ -46,7 +46,7 @@ else
                     <td>@exp.UniqueName</td>
                     
                     <td>
-                        <select @onchange="args => MapCategoryToExpenseAsync(args,exp)">
+                        <select class="form-select form-select-sm" @onchange="args => MapCategoryToExpenseAsync(args,exp)">
                             @if (exp.Category is null)
                             {
                                 <option selected>None</option>
@@ -62,8 +62,8 @@ else
                         </select>
                     </td>
                     
-                    <td><a class="btn btn-info">Edit</a></td>
-                    <td><a class="btn btn-danger">Delete</a></td>
+                    <td><a class="btn btn-info btn-sm">Edit</a></td>
+                    <td><a class="btn btn-danger btn-sm">Delete</a></td>
                 </tr>
             }
 
